@@ -22,7 +22,9 @@ public class JsonUtil {
             JSONObject parsedObject = (JSONObject) wikiJson.get("parse");
             JSONObject textObject = (JSONObject) parsedObject.get("text");
             html = (String) textObject.get("*");
-        } catch (ParseException e) {
+        } catch (ParseException pe) {
+            return null;
+        } catch (NullPointerException npe) {
             return null;
         }
         return html;

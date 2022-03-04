@@ -17,11 +17,14 @@ public class WikipediaUtil {
 
     /**
      * Calls wikipedia's parse API and retrieves the raw JSON response by page.
-     * @param title the wikipedia page to retrieve.
+     * @param title the wikipedia page to retrieve. Should not be null.
      * @return the raw JSON from wikipedia.
      * @throws IOException if an error occurs calling wikipedia.
      */
     public String getRawJsonFromPage(final String title) throws IOException {
+        if (title == null || title.length() == 0) {
+            return null;
+        }
         Request request = new Request.Builder()
             .url(String.format(WIKIPEDIA_URL_TEMPLATE, title))
             .get()
